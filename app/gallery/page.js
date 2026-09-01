@@ -1,0 +1,3 @@
+import SiteShell from '../../components/site-shell'; import PageIntro from '../../components/page-intro'; import Gallery from '../../components/gallery'; import ContactSection from '../../components/contact-section';
+export const metadata = { title: 'Gallery', description: 'A gallery of Happigo group experiences, gatherings and celebrations.' };
+export default function GalleryPage() { return <SiteShell><PageIntro eyebrow="GATHERED MOMENTS" title={<>The proof is in<br/><i>the smiles.</i></>} text="A scrapbook of shared discoveries, meaningful meetings and a few very good evenings." cta="Create your moment"/><Gallery/><ContactSection/></SiteShell>; }

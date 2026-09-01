@@ -1,0 +1,15 @@
+'use client';
+import Image from 'next/image';
+import { useEffect, useRef, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { ArrowLeft, ArrowRight, X } from 'lucide-react';
+import { galleryImages } from '../data/site-config';
+import { SectionTitle } from './reveal';
+
+export default function Gallery({ limit = false }) {
+  const cards = limit ? galleryImages.slice(0, 4) : galleryImages;
+  const rail = useRef(null); const [selected, setSelected] = useState(null);
+  const move = (dir) => rail.current?.scrollBy({ left: dir * Math.min(370, rail.current.clientWidth * .82), behavior: 'smooth' });
+  useEffect(() => { const listener = (event) => { if (!selected) return; if (event.key === 'Escape') setSelected(null); if (event.key === 'ArrowRight') setSelected((selected + 1) % cards.length); if (event.key === 'ArrowLeft') setSelected((selected - 1 + cards.length) % cards.length); }; window.addEventListener('keydown', listener); return () => window.removeEventListener('keydown', listener); }, [selected, cards.length]);
+  return <section className="gallery section" id="gallery"><div className="content-wrap"><div className="section-split"><SectionTitle eyebrow="THE MOMENTS BETWEEN" title={<>Event experience <i>gallery</i></>} text="A few snapshots from the collective memories we love to make."/><div className="gallery-controls"><button onClick={() => move(-1)} aria-label="Previous gallery images"><ArrowLeft/></button><button onClick={() => move(1)} aria-label="Next gallery images"><ArrowRight/></button></div></div><div className="polaroid-rail" ref={rail} tabIndex="0" aria-label="Gallery. Use left and right arrows to browse.">{cards.map((item, index) => <motion.button className="polaroid" key={item.src} onClick={() => setSelected(index)} whileHover={{ y: -8, rotate: 0 }} style={{ '--turn': `${(index % 2 ? 1 : -1) * (index + 1.5)}deg` }}><span className="polaroid__image"><Image src={item.src} alt={item.alt} fill sizes="(max-width: 720px) 78vw, 350px"/></span><span>{item.caption}</span></motion.button>)}</div></div><AnimatePresence>{selected !== null && <motion.div className="lightbox" role="dialog" aria-modal="true" aria-label="Expanded gallery image" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setSelected(null)}><motion.div className="lightbox__card" initial={{ scale: .92, y: 25 }} animate={{ scale: 1, y: 0 }} exit={{ scale: .92 }} onClick={(e) => e.stopPropagation()}><Image src={cards[selected].src} alt={cards[selected].alt} width={1100} height={750} sizes="90vw"/><p>{cards[selected].caption}</p><button className="lightbox__close" onClick={() => setSelected(null)} aria-label="Close image"><X/></button><button className="lightbox__prev" onClick={() => setSelected((selected - 1 + cards.length) % cards.length)} aria-label="Previous image"><ArrowLeft/></button><button className="lightbox__next" onClick={() => setSelected((selected + 1) % cards.length)} aria-label="Next image"><ArrowRight/></button></motion.div></motion.div>}</AnimatePresence></section>;
+}

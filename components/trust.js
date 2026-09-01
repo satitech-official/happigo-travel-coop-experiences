@@ -1,0 +1,7 @@
+'use client';
+import { useEffect, useRef, useState } from 'react';
+import { Award } from 'lucide-react';
+import { statistics } from '../data/site-config';
+import { SectionTitle } from './reveal';
+function Counter({ target, suffix }) { const ref = useRef(null); const [value, setValue] = useState(0); useEffect(() => { const observer = new IntersectionObserver(([entry]) => { if (!entry.isIntersecting) return; const start = performance.now(); const tick = (now) => { const progress = Math.min((now - start) / 1200, 1); setValue(Math.round(target * (1 - Math.pow(1 - progress, 3)))); if (progress < 1) requestAnimationFrame(tick); }; requestAnimationFrame(tick); observer.disconnect(); }, { threshold: .45 }); if (ref.current) observer.observe(ref.current); return () => observer.disconnect(); }, [target]); return <strong ref={ref}>{value}{suffix}</strong>; }
+export default function Trust() { return <section className="trust section section--ink"><div className="content-wrap"><div className="trust__head"><SectionTitle eyebrow="OUR PLACEHOLDER SCORECARD" title={<>Trusted by communities,<br/><i>loved by people.</i></>} text="These figures are placeholders for client confirmation before publication." light/><div className="trust-seal"><Award size={40}/><span>HAPPIGO<br/><b>INDORE</b><br/>EST. 2026</span></div></div><div className="trust-stats">{statistics.map((stat) => <article key={stat.label}><Counter target={stat.value} suffix={stat.suffix}/><p>{stat.label}</p><small>Awaiting confirmation</small></article>)}</div></div></section>; }

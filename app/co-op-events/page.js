@@ -1,0 +1,3 @@
+import SiteShell from '../../components/site-shell'; import PageIntro from '../../components/page-intro'; import CoopEvents from '../../components/coop-events'; import Journey from '../../components/journey'; import ContactSection from '../../components/contact-section';
+export const metadata = { title: 'Co-op Events', description: 'Curated cooperative events, retreats, meetings and group experiences.' };
+export default function CoOpEventsPage() { return <SiteShell><PageIntro eyebrow="GATHER WITH INTENTION" title={<>Co-op events that<br/><i>move people.</i></>} text="From member retreats to annual celebrations, Happigo makes every shared moment feel thoughtfully yours." cta="Plan your event"/><CoopEvents/><Journey/><ContactSection/></SiteShell>; }

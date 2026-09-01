@@ -1,0 +1,3 @@
+import SiteShell from '../../components/site-shell'; import PageIntro from '../../components/page-intro'; import ContactSection from '../../components/contact-section'; import Faq from '../../components/faq';
+export const metadata = { title: 'Contact', description: 'Start planning your Happigo cooperative event or group experience.' };
+export default function ContactPage() { return <SiteShell><PageIntro eyebrow="THE FIRST HELLO" title={<>Let&apos;s make a plan<br/><i>worth keeping.</i></>} text="You bring the people and the occasion. We will help map the way there." cta="Send an enquiry"/><ContactSection/><Faq/></SiteShell>; }
