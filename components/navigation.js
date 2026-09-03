@@ -8,6 +8,7 @@ import { ChevronDown, Menu, MessageCircle, Phone, X } from 'lucide-react';
 import { brand, contact, navigation } from '../data/site-config';
 
 const whatsapp = `https://wa.me/91${contact.phones[0]}?text=${encodeURIComponent(contact.whatsappMessage)}`;
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
 
 export default function Navigation() {
   const [open, setOpen] = useState(false);
@@ -20,7 +21,7 @@ export default function Navigation() {
   useEffect(() => { document.body.style.overflow = open ? 'hidden' : ''; return () => { document.body.style.overflow = ''; }; }, [open]);
   return <>
     <header className={`site-nav ${scrolled ? 'site-nav--compact' : ''}`}>
-      <Link href="/" className="brand-mark" aria-label="Happigo home" onClick={() => setOpen(false)}><Image className="brand-mark__logo" src="/images/happigo-logo-crop.png" alt="Happigo, a Laxmi Ventures company" width={54} height={54} priority/><span><b>{brand.name}</b><small>travel journal</small></span></Link>
+      <Link href="/" className="brand-mark" aria-label="Happigo home" onClick={() => setOpen(false)}><Image className="brand-mark__logo" src={`${basePath}/images/happigo-logo-crop.png`} alt="Happigo, a Laxmi Ventures company" width={54} height={54} priority/><span><b>{brand.name}</b><small>travel journal</small></span></Link>
       <nav className="desktop-nav" aria-label="Primary navigation">
         {navigation.map((item) => <div className="nav-item" key={item.href}>
           <Link href={item.href}>{item.label}{item.children && <ChevronDown size={13} strokeWidth={2.5} />}</Link>

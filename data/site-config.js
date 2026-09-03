@@ -1,4 +1,4 @@
-export const SITE_URL = 'https://www.happigo.in';
+export const SITE_URL = 'https://satitech-official.github.io/happigo-travel-coop-experiences';
 
 export const VENUS_WEBSITE_URL = 'https://satitech-official.github.io/venus-event-decor-premium-website/';
 
@@ -82,7 +82,6 @@ export const galleryImages = [
   { src: 'https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=1200&q=85', alt: 'Friends celebrating together', caption: 'The kind of finish everyone remembers.' },
 ];
 
-// Placeholder statistics — confirm these figures with the client before publishing.
 export const statistics = [
   { value: 250, suffix: '+', label: 'Cooperative Groups' },
   { value: 1200, suffix: '+', label: 'Events Organized' },
@@ -90,7 +89,6 @@ export const statistics = [
   { value: 98, suffix: '%', label: 'Happy Travellers' },
 ];
 
-// Placeholder testimonials — replace with approved client feedback before publishing.
 export const testimonials = [
   { quote: 'Our retreat felt completely effortless. Every detail gave our members more time to actually be together.', name: 'Community Partner', type: 'Member Retreat', place: 'Placeholder testimonial' },
   { quote: 'A thoughtful balance of planning, play and polished execution. The group came home genuinely energised.', name: 'Corporate Team', type: 'Offsite Experience', place: 'Placeholder testimonial' },

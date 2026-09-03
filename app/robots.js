@@ -1,1 +1,10 @@
-export default function robots() { return { rules: { userAgent: '*', allow: '/' }, sitemap: 'https://www.happigo.in/sitemap.xml' }; }
+import { SITE_URL } from '../data/site-config';
+
+export const dynamic = 'force-static';
+
+export default function robots() {
+  return {
+    rules: { userAgent: '*', allow: '/' },
+    sitemap: `${SITE_URL}/sitemap.xml`,
+  };
+}
