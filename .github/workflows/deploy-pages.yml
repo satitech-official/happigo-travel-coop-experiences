@@ -36,6 +36,7 @@ jobs:
           cache: pnpm
 
       - name: Configure GitHub Pages
+        if: github.event_name != 'pull_request'
         uses: actions/configure-pages@v5
         with:
           enablement: true
